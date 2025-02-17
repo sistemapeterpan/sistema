@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de formação Peter Pan</title>
+    <style>
+        /* Resetando margens e preenchimentos padrão */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Cabeçalho Fixo com Gradiente */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to right, #3cd6a0, #114b71); /* Gradiente do cabeçalho */
+            color: white;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo h1 {
+            font-size: 16px; /* Reduzido para 16px */
+            margin-left: 5px; /* Ajustado para 5px */
+        }
+
+        header nav ul {
+            list-style: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #ffb400; /* Cor de destaque */
+        }
+
+        header .login {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        header .login a {
+            text-decoration: none;
+            color: #ffb400;
+            font-size: 16px;
+        }
+
+        /* Espaço para o conteúdo abaixo do cabeçalho fixo */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Banner */
+        .banner {
+            background-color: #ffffff;
+            color: white;
+            text-align: center;
+            padding: 170px 0;
+            position: relative;
+            background-image: url('logo.png'); /* Substitua pela URL da sua logo */
+            background-size: 570px 570px; /* Reduzido o tamanho da imagem */
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .banner .banner-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+
+        .banner .banner-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Sombra para melhorar a legibilidade */
+        }
+
+        /* Seções de Conteúdo */
+        section {
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Carrossel de Cursos */
+        .carousel-container {
+            display: flex;
+            overflow: hidden;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .curso {
+            min-width: 300px;
+            max-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .curso img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .curso-info {
+            padding: 15px;
+        }
+
+        .curso h3 {
+            font-size: 22px;
+            color: #333;
+        }
+
+        .curso p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .curso .preco {
+            font-size: 18px;
+            font-weight: bold;
+            color: #3cd6a0;
+        }
+
+        /* Controles do carrossel */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .carousel-button {
+            background-color: #3cd6a0;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .carousel-button:hover {
+            background-color: #114b71;
+        }
+
+        /* Seção de Contagem de Alunos */
+        .contador-alunos {
+            background-color: #f8f8f8;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contador-alunos h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contador-alunos .contador {
+            font-size: 50px;
+            color: #3cd6a0;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .contador-alunos p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Formulário de Validação de Certificados */
+        #validacao-certificados {
+            background-color: #f8f8f8;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        #validacao-certificados h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #validacao-certificados input {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        #validacao-certificados button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3cd6a0;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #validacao-certificados button:hover {
+            background-color: #114b71;
+        }
+
+        /* Rodapé */
+        footer {
+            background: linear-gradient(to right, #3cd6a0, #114b71); /* Gradiente no rodapé */
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer .footer-links ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        footer .footer-links ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        footer .footer-links ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        footer .footer-links ul li a:hover {
+            color: #ffb400;
+        }
+
+        footer .footer-copy {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        footer .footer-copy p {
+            margin: 5px 0;
+        }
+
+        footer .footer-social {
+            margin-top: 20px;
+        }
+
+        footer .footer-social a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+
+        footer .footer-social a:hover {
+            color: #ffb400;
+        }
+
+        footer .newsletter form {
+            margin-top: 30px;
+        }
+
+        footer .newsletter input {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border: none;
+            width: 300px;
+        }
+
+        footer .newsletter button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffb400;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        footer .newsletter button:hover {
+            background-color: #e59500;
+        }
+
+        /* Modal (Janela flutuante) */
+        #modalSobreNos {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            width: 60%;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #modalSobreNos h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #modalSobreNos p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        #modalSobreNos .fechar {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #modalSobreNos .fechar:hover {
+            background-color: #e03c3c;
+        }
+
+        /* Estilo do fundo escurecido do modal */
+        #modalBackground {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho Fixo -->
+    <header>
+        <div class="logo">
+            <h1>Centro de formação Peter Pan</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+              
+                <li><a href="#supletivo">Supletivo</a></li>
+               
+            
+                <li><a href="#validacao-certificados">Validação de Certificados</a></li> <!--  -->
+                <li><a href="javascript:void(0);" onclick="mostrarSobreNos()">Sobre Nós</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="login">
+            <a href="#login">Login</a>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section id="home" class="banner">
+        <div class="banner-content">
+            <h2></h2>
+            <!-- O botão foi removido -->
+        </div>
+    </section>
+
+    <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de formação Peter Pan</title>
+    <style>
+        /* Estilos mantidos */
+        #loading {
+            display: none;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #3cd6a0;
+        }
+        #certificateData {
+            display: none;
+            margin-top: 20px;
+            border: 1px solid #000;
+            padding: 20px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+        #downloadBtn {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3cd6a0;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #downloadBtn:hover {
+            background-color: #114b71;
+        }
+    </style>
+</head>
+<body>
+    <!-- Seção de Validação de Certificados -->
+    <section id="validacao-certificados">
+        <h3>Validação de Certificados</h3>
+        <p>Digite o código do seu certificado para validá-lo.</p>
+        <input type="text" id="codigo-certificado" placeholder="Código do Certificado">
+        <button onclick="validateCertificate()">Validar Certificado</button>
+        <div id="loading">Validando, aguarde...</div>
+        <div id="certificateData">
+            <h3>Dados do Certificado</h3>
+            <p><strong>Nome:</strong> NATALINO FRANÇA RIBEIRO</p>
+            <p><strong>CPF:</strong> 045.858.503-33</p>
+            <p><strong>Data de Nascimento:</strong> 25/12/2000</p>
+            <p><strong>Naturalidade:</strong> Bequimão - MA</p>
+            <p><strong>Curso:</strong> Ensino Médio - EJA</p>
+            <p><strong>Instituição:</strong> Centro de Formação Peter Pan</p>
+            <p><strong>CNPJ:</strong> 22.379.245/0001-04</p>
+            <p><strong>Data de Conclusão:</strong> 20/12/2022</p>
+            <button id="downloadBtn" onclick="downloadCertificate()">Baixar Certificado</button>
+        </div>
+    </section>
+
+    <script>
+        function validateCertificate() {
+            var code = document.getElementById("codigo-certificado").value;
+            var loading = document.getElementById("loading");
+            var certificateData = document.getElementById("certificateData");
+            var downloadBtn = document.getElementById("downloadBtn");
+
+            if (code === "CERTEJA2225005") { // Código correto
+                loading.style.display = "block";
+                certificateData.style.display = "none";
+                downloadBtn.style.display = "none";
+                
+                setTimeout(function() {
+                    loading.style.display = "none";
+                    certificateData.style.display = "block";
+                    downloadBtn.style.display = "block";
+                }, 3000);
+            } else {
+                alert("Código inválido! Tente novamente.");
+            }
+        }
+
+        function downloadCertificate() {
+            var link = document.createElement('a');
+            link.href = 'https://drive.google.com/file/d/1k-EAC5r9EDKv1s2ibxwru1oPKzG6XJSv/view?usp=sharing'; // Substitua pelo caminho correto do PDF
+            link.download = 'Certificado_Natalino_Franca_Ribeiro.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
+
+    <!-- Seção de Explorar Cursos com Carrossel -->
+    <section id="cursos">
+        <h2>HISTÓRIAS DE CONQUISTAS</h2>
+
+        <div class="carousel-container">
+            <div class="carousel">
+                <!-- Curso 1 -->
+                <div class="curso">
+                    <img src="imagem1.jpeg" alt="Curso Supletivo">
+                    <div class="curso-info">
+                        <h3>MATEUS SANTOS</h3>
+                        <p>Mateus concluiu o ensino médio EJA EAD com dedicação, buscando novas oportunidades para sua carreira.</p>
+                        <p class="preco">&#10004&#10004&#10004</p>
+                    </div>
+                </div>
+
+                <!-- Curso 2 -->
+                <div class="curso">
+                    <img src="imagem2.jpeg" alt="Curso Graduação">
+                    <div class="curso-info">
+                        <h3>UILSON GOVEIA VIANA</h3>
+                        <p>Uilson finalizou seus estudos com o EJA EAD e agora se prepara para os próximos desafios profissionais.</p>
+                        <p class="preco">&#10004&#10004&#10004</p>
+                    </div>
+                </div>
+
+                <!-- Curso 3 -->
+                <div class="curso">
+                    <img src="imagem3.jpeg" alt="Curso Pós-Graduação">
+                    <div class="curso-info">
+                        <h3>JULIA PALADINO E HANNA SERRA</h3>
+                        <p>Julia e hanna, com esforço e foco, completaram o ensino médio EJA EAD e estão prontas para ingressar na faculdade.</p>
+                        <p class="preco">&#10004&#10004&#10004</p>
+                    </div>
+                </div>
+
+                <!-- Curso 4 -->
+                <div class="curso">
+                    <img src="imagem4.jpeg" alt="Curso Pós-Graduação">
+                    <div class="curso-info">
+                        <h3>ANTONIO PEREIRA SILVA</h3>
+                        <p>Antonio terminou o ensino médio EJA EAD e agora busca aprimorar seus conhecimentos para crescer na carreira.</p>
+                        <p class="preco">&#10004&#10004&#10004</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="carousel-button" id="prevBtn">❮</button>
+            <button class="carousel-button" id="nextBtn">❯</button>
+        </div>
+    </section>
+
+    <!-- Seção de Contagem de Alunos -->
+    <section class="contador-alunos">
+        <h3>Veja nosso progresso</h3>
+        <div class="contador" id="contador-matriculados">674</div>
+        <p>Alunos Matriculados</p>
+        <div class="contador" id="contador-concluidos">487</div>
+        <p>Alunos que Concluiram o EJA EAD</p>
+    </section>
+
+    <!-- Modal de Sobre Nós -->
+    <div id="modalBackground"></div>
+    <div id="modalSobreNos">
+        <h3>Sobre o Centro de Formação Peter Pan</h3>
+        <p>Somos uma instituição dedicada à educação de jovens e adultos, oferecendo cursos de EJA EAD com a flexibilidade necessária para que todos possam conciliar os estudos com suas rotinas diárias. Nossa missão é garantir que todos, independentemente de sua idade ou momento de vida, tenham acesso a uma educação de qualidade e à oportunidade de concluir seus estudos de forma acessível e adaptada às suas necessidades. Acreditamos que a educação é uma ferramenta poderosa de transformação e inclusão, e trabalhamos para proporcionar essa oportunidade a cada aluno, onde quer que esteja.</p>
+        <button class="fechar" onclick="fecharSobreNos()">Fechar</button>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">Termos de Serviço</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-copy">
+            <p>&copy; 2025 Centro de Formação Peter Pan. Todos os direitos reservados.</p>
+            <p>CNPJ: 22.379.245/0001-04 | INEP/Censo Escolar: 23265051</p>
+        </div>
+
+        <div class="footer-social">
+            <a href="#">Facebook</a>
+            <a href="https://www.instagram.com/cfpeterpan?igsh=bTdsZWQxamdvZWNx">Instagram</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Funções para abrir e fechar o modal
+        function mostrarSobreNos() {
+            document.getElementById('modalSobreNos').style.display = 'block';
+            document.getElementById('modalBackground').style.display = 'block';
+        }
+
+        function fecharSobreNos() {
+            document.getElementById('modalSobreNos').style.display = 'none';
+            document.getElementById('modalBackground').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>   
