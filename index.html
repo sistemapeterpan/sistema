@@ -475,12 +475,12 @@
 
     <script>
         function validateCertificate() {
-            var code = document.getElementById("SISCERTEJA0069").value;
+            var code = document.getElementById("codigo-certificado").value;
             var loading = document.getElementById("loading");
             var certificateData = document.getElementById("certificateData");
             var downloadBtn = document.getElementById("downloadBtn");
 
-            if (code === "CERTEJA2225005") { // Código correto
+            if (code === "SISCERTEJA0069") { // Código correto
                 loading.style.display = "block";
                 certificateData.style.display = "none";
                 downloadBtn.style.display = "none";
