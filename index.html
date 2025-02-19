@@ -457,7 +457,7 @@
         <h3>Validação de Certificados</h3>
         <p>Digite o código do seu certificado para validá-lo.</p>
         <input type="text" id="codigo-certificado" placeholder="Código do Certificado">
-        <button onclick="validateCertificate(SISCERTEJA0069)">Validar Certificado</button>
+        <button onclick="validateCertificate()">Validar Certificado</button>
         <div id="loading">Validando, aguarde...</div>
         <div id="certificateData">
             <h3>Dados do Certificado</h3>
@@ -475,7 +475,7 @@
 
     <script>
         function validateCertificate() {
-            var code = document.getElementById("codigo-certificado").value;
+            var code = document.getElementById("SISCERTEJA0069").value;
             var loading = document.getElementById("loading");
             var certificateData = document.getElementById("certificateData");
             var downloadBtn = document.getElementById("downloadBtn");
