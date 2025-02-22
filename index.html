@@ -461,10 +461,11 @@
         <div id="loading">Validando, aguarde...</div>
         <div id="certificateData">
             <h3>Dados do Certificado</h3>
-            <p><strong>Nome:</strong> RAILSON LISBÔA SILVA</p>
-            <p><strong>CPF:</strong> 06154434359</p>
-            <p><strong>Data de Nascimento:</strong> 20/07/1995</p>
-            <p><strong>Naturalidade:</strong> BARREIRINHAS - MA</p>
+            <p><strong>Nome:</strong> LUIZ CARLOS GIOVANINI 
+                DE SOUSA</p>
+            <p><strong>CPF:</strong> 03888229960</p>
+            <p><strong>Data de Nascimento:</strong> 24/05/1982</p>
+            <p><strong>Naturalidade:</strong> MARINGÁ-PR</p>
             <p><strong>Curso:</strong> Ensino Médio - EJA</p>
             <p><strong>Instituição:</strong> Centro de Formação Peter Pan</p>
             <p><strong>CNPJ:</strong> 22.379.245/0001-04</p>
@@ -480,7 +481,7 @@
             var certificateData = document.getElementById("certificateData");
             var downloadBtn = document.getElementById("downloadBtn");
 
-            if (code === "SISCERTEJA0069") { // Código correto
+            if (code === "SISCERTEJA0060") { // Código correto
                 loading.style.display = "block";
                 certificateData.style.display = "none";
                 downloadBtn.style.display = "none";
@@ -497,7 +498,7 @@
 
         function downloadCertificate() {
             var link = document.createElement('a');
-            link.href = 'https://drive.google.com/file/d/17W3mHWjFys7xWqMUOodAx2NoW3oH7STE/view?usp=sharing'; // Substitua pelo caminho correto do PDF
+            link.href = 'https://drive.google.com/file/d/17jbSm9at9nVoSh0PVEG5HZ3nBgJjB2pu/view?usp=sharing'; // Substitua pelo caminho correto do PDF
             link.download = 'Certificado_Natalino_Franca_Ribeiro.pdf';
             document.body.appendChild(link);
             link.click();
